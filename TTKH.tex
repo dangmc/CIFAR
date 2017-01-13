@@ -1,0 +1,322 @@
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+\documentclass{beamer}
+
+% There are many different themes available for Beamer. A comprehensive
+% list with examples is given here:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+% You can uncomment the themes below if you would like to use a different
+% one:
+
+\usetheme{Madrid}
+\usepackage{multirow}
+\usepackage{graphicx} %package to manage images
+
+\usepackage{animate}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnam]{babel}
+\usepackage{enumitem}
+\title[Tính toán khoa học]{Phân loại ảnh sử dụng Convolutional Neural Network}
+
+% A subtitle is optional and this may be deleted
+\subtitle{}
+
+\author[DangMc, P.H.Hạnh ]{\qquad  Sinh viên thực hiện \\ \qquad \vspace{1cm}Đặng Mạnh Cường \ Phan Thị Hồng Hạnh  \\
+\qquad Giáo viên hướng dẫn \\ 
+\qquad  TS.Đinh Viết Sang}
+
+\institute[HUST] % (optional, but mostly needed)
+{
+ % from CNTT2-04\\
+  %Ha Noi University of Science and Technology
+  }
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\date{\qquad Hà Nội, 14-01-2017}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Mục Lục}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+\newenvironment<>{varblock}[2][\textwidth]{%
+  \setlength{\textwidth}{#1}
+  \begin{actionenv}#3%
+    \def\insertblocktitle{#2}%
+    \par%
+    \usebeamertemplate{block begin}}
+  {\par%
+    \usebeamertemplate{block end}%
+  \end{actionenv}}
+% Let's get started
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Mục Lục}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+% Section and subsections will appear in the presentation overview
+% and table of contents.
+\section{Nội dung đề tài}
+\begin{frame}{Nội dung đề tài}
+	\begin{itemize}[label = \textbullet]
+		\item Phân loại tập các hình ảnh thành các tập đối tượng khác nhau
+		\item Với một hình ảnh đầu vào, gán nhãn cho hình ảnh đó
+		\item Sử dụng Convolutional Neural Network
+	\end{itemize}
+\end{frame}
+\section{Mô hình}
+\subsection{Convolutional Neural Network}
+\begin{frame}{Convolutional Neural Network}
+	Convolution (Tích chập): 
+		\begin{itemize}[label = \textbullet]
+			\item Tích chập được sử dụng đầu tiên trong xử lý tín hiệu số
+			\item Ta có thể xem tích chập như một cửa sổ trượt (sliding window) áp đặt lên một ma trận
+			
+		\end{itemize}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{conv-0}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{conv-1}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{conv-2}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{conv-3}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{conv-4}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{conv-5}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{conv-6}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{conv-7}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{conv-8}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{itemize}[label = \textbullet]
+		\item CNNs chỉ đơn giản gồm một vài layer của convolution kết hợp với các hàm kích hoạt phi tuyến (nonlinear activation function) như ReLU hay tanh để tạo ra thông tin trừu tượng hơn cho các layer tiếp theo.
+		\item Các layer liên kết được với nhau thông qua cơ chế convolution
+		\item Ngoài ra con một số layer khác như maxpooling, norm dùng để chuẩn hóa, chắt lọc thông tin hữu ích.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Convolutional Neural Network}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{CONV}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Pooling}{Convolutional Neural NetWork}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{p}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\subsection{Mô hình áp dụng}
+\begin{frame}{Mô hình áp dụng}
+	$[32x32x3] INPUT$\\
+	$[32x32x64] CONV1 + RELU: 64$, $1x5$ filter, stride 1, padding SAME \\
+	$[32x32x64] CONV2 + RELU: 64$, $5x1$ filter, stride 1, pading SAME \\
+	$[16x16x64] MAXPOOL1$: $3x3$ filter, stride 2 \\
+	$[16x16x64] NORM1$: Local Response Normalization \\
+	 
+	$[16x16x64] CONV3 + RELU: 64$, $1x5$ filter, stride 1, padding SAME \\
+	$[16x16x64] CONV4 + RELU: 64$, $5x1$ filter, stride 1, pading SAME \\
+	$[16x16x64] NORM2$: Local Response Normalization \\
+	$[8x8x64] MAXPOOL2$: $3x3$ filter, stride 2 \\
+	$[384]$ FC1: 384 neurons \\
+	$[192]$ FC2: 192 neurons \\
+	$[10]$ FC3: 10 neurons \\
+	
+\end{frame}
+\begin{frame}{Local Response Normalization}
+	\begin{itemize}[label = \textbullet]
+		\item Trong thần kinh học, có một khái niệm gọi là "Ức chế biên". Tế bào thần kinh sẽ bị kích thích bởi các tế bào lân cận, làm gia tăng khả năng nhận thức. $\Rightarrow$ Áp dụng vào mạng neuron  
+		\item Gọi $a_{xy}^{i}$ là giá trị tại vị trí $(x, y)$ thuộc kênh $i$: \\
+		\hspace{2cm}
+			$a_{xy}^{i} = \frac{a_{xy}^{i}}{{(\gamma +\alpha \sum\limits_{j = max(0, i - r/2}^{min(K-1,i+r/2)}{{a_{xy}^{j}}^2})}^{\beta}}$ \\
+		\hspace{1cm} Trong đó: \\
+		\hspace{2cm} K là kích thước kênh \\
+		\hspace{2cm} r là bán kính lân cận \\
+		\hspace{2cm} $\alpha, \beta, \gamma$ là các tham số \\
+		\hspace{2cm} chọn $\alpha = 0.001, \beta = 0.75, \gamma = 0.1$
+			
+	\end{itemize}
+\end{frame}
+\begin{frame}{Mô hình áp dụng}
+	Cost function: \\
+	\hspace{2cm}
+	$C = -\frac{1}{n}\sum\limits_{x}{[ylna + (1-y)ln(1-a)]}$\\
+	\hspace{1cm} Trong đó:\\
+	\hspace{2cm} 
+	y là kết quả thực\\
+	\hspace{2cm}
+	a là kết quả do mô hình dự đoán
+	\begin{itemize}[label = \textbullet]
+		\item Cực tiểu hàm mục tiêu sử dụng Stochastic gradient descent kết hợp thuật toán Lan truyền ngược
+	\end{itemize}
+	
+\end{frame}
+\begin{frame}{Overfitting}
+
+	\begin{itemize}[label = \textbullet]
+		\item Là hiện tượng mô hình quá khớp với dữ liệu huấn luyện khiến cho kết quả trên tập test không tốt như mong muốn
+		\item Làm thế nào để giải quyết vấn đề overfitting?
+		\begin{itemize}[label = \textendash]
+			\item L2 regularization
+			\item Early Stopping 
+			\item Dropout 
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+\begin{frame}{L2 regularization}{Overfitting}
+	Ý tưởng: \\
+	\begin{itemize}[label = \textbullet]
+		\item Giới hạn phạm vi học của các tham số
+	\end{itemize}
+	Đặt: \\
+	\hspace{2cm} 
+	$T = \lambda \sum\limits_{w}{||w||^2}$ \\
+	Cost function: \\
+	\hspace{2cm}
+	$C = -\frac{1}{n}\sum\limits_{x}{[ylna + (1-y)ln(1-a)]} + T$
+\end{frame}
+\begin{frame}{Early Stoping}{Overfitting}
+	Ý tưởng: \\
+	\begin{itemize}[label = \textbullet]
+		\item Xây dựng tập Validation, một phần nhỏ từ tập huấn luyện ($1/10$ tập huấn luyện)	
+		\item Sử dụng tập Validation để phát hiện tượng Overfitting
+			\begin{itemize}[label = \textendash]
+				\item Training trên tập huấn luyện cho đến khi độ chính xác trên tập validation bão hòa $\Rightarrow$ dựng quá trình trainning
+			\end{itemize}
+			
+	\end{itemize}
+\end{frame}
+\begin{frame}{Early Stoping}{Overfitting}
+	\begin{figure}
+		    		\centering
+				\includegraphics[width=0.7\textwidth]{baohoa}
+				\label{fig:img1}
+			\end{figure}
+\end{frame}
+\begin{frame}{Dropout}
+Ý tưởng:\\
+\begin{itemize}[label = \textbullet]
+	\item Thay đổi cấu trúc mạng ở mỗi bước training
+	\item Xóa ngẫu nhiên một nửa số neuron ở tẩng ẩn
+	\begin{figure}
+		    		\centering
+				\includegraphics[width=0.5\textwidth]{dropout}
+				\label{fig:img1}
+			\end{figure}
+\end{itemize}
+
+\end{frame}
+\section{Kết quả thực nghiệm}
+\subsection{Bộ dữ liệu}
+\begin{frame}{Bộ dữ liệu}
+	CIFAR10: Gồm 60000 hình ảnh màu kích thước 32x32 trên 10 đối tượng khác nhau
+	\begin{itemize}[label = \textbullet]
+		\item Tập huấn luyện: gồm 50000 hình ảnh, kèm theo nhãn tương ứng 
+		\item Tập test: gồm 10000 hình ảnh, kèm theo nhãn tương ứng
+	\end{itemize}
+
+\end{frame}
+\begin{frame}{Môi trường thực nghiệm}
+\begin{itemize}[label = \textbullet]
+		\item Hệ điều hành ubuntu 14.04-64 bit
+		\item Intel core i7 - 3540M, CPU 3.0Ghz x 4
+		\item Ngôn ngữ lập trình: python
+		\item Thư viện hỗ trợ: Tensorflow
+	\end{itemize}
+\end{frame}
+\begin{frame}{Kết quả}
+Đồ thị thể hiện độ chính xác trên tập training và tập validation trong quá trình học
+\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{accuracy}
+		\label{fig:img1}
+	\end{figure}
+\end{frame}
+\begin{frame}{Kết quả}
+	\begin{itemize}[label = \textbullet]
+		\item Độ chính xác trên tập huấn luyện: 90\%
+		\item Độ chính xác trên tập test: 78\%
+		\item Thời gian huấn luyện: 6 tiếng
+	\end{itemize}
+
+\end{frame}
+\subsection{Kết quả}
+\begin{frame}
+\Huge 
+\begin{center}
+	THANK YOU!
+\end{center}
+\end{frame}
+\end{document}
+
+
